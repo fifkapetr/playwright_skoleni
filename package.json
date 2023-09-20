@@ -1,0 +1,22 @@
+{
+  "name": "playwright_skoleni",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fifkapetr/playwright_skoleni.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fifkapetr/playwright_skoleni/issues"
+  },
+  "homepage": "https://github.com/fifkapetr/playwright_skoleni#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.38.0",
+    "@types/node": "^20.6.2"
+  }
+}
