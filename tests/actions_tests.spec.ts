@@ -1,19 +1,19 @@
 import { test } from "@playwright/test";
 
-test("Click test @githubactions", async ({ page }) => {
+test("Click test @smoke", async ({ page }) => {
   await page.goto("http://tredgate.com/pmtool/");
   await page.locator("#username").fill("pw_skoleni");
   await page.locator("#password").fill("TEG2023");
   await page.locator("//button[@type='submit']").click();
 });
 
-test("Fill and type test @githubactions", async ({ page }) => {
+test("Fill and type test @smoke", async ({ page }) => {
   await page.goto("http://tredgate.com/pmtool/");
   await page.locator("#username").type("pw_skoleni");
   await page.locator("#password").fill("TEG2023");
 });
 
-test("Select tests @githubactions", async ({ page }) => {
+test("Select tests", async ({ page }) => {
   await page.goto(
     "https://www.webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html"
   );

@@ -12,7 +12,7 @@ test("GET Users, page 2", async ({ request }) => {
   });
 });
 
-test("GET Booking with header", async ({ request }) => {
+test("GET Booking with Header", async ({ request }) => {
   await request.get("https://restful-booker.herokuapp.com/booking", {
     headers: {
       "Accept-Language": "en-US,en;q=0.9,cs-CZ;q=0.8,cs;q=0.7,it;q=0.6",
@@ -32,7 +32,6 @@ test("Restful POST Auth with body", async ({ request }) => {
 test("Update Booking with authorized request - transfer data", async ({
   request,
 }) => {
-  // * Provolání Auth requestu
   const authResponse = await request.post(
     "https://restful-booker.herokuapp.com/auth",
     {
@@ -43,18 +42,18 @@ test("Update Booking with authorized request - transfer data", async ({
     }
   );
 
-  // * Vytažení tokenu z response
   const responseBody = await authResponse.json();
+  console.log(responseBody);
   const token = responseBody.token;
+  console.log(token);
 
-  // * Nastavení proměnných pro Update request
-  const headers = {
-    "Content-Type": "application/json",
+  const preparedHeaders = {
+    "Content-Type": "application/json", // * redudantní - playwright tuto hlavičku používá automaticky
     Accept: "application/json",
-    Cookie: "token=" + token, // ! Použití const token do hlavičky cookie
+    Cookie: `token=${token}`,
   };
 
-  const data = {
+  const preparedBody = {
     firstname: "James",
     lastname: "Brown",
     totalprice: 111,
@@ -66,12 +65,8 @@ test("Update Booking with authorized request - transfer data", async ({
     additionalneeds: "Breakfast",
   };
 
-  // * provolání requestu
-  const response = await request.put(
-    "https://restful-booker.herokuapp.com/booking/1182",
-    {
-      headers: headers, // * použití const headers
-      data: data, // * použití const data
-    }
-  );
+  await request.put("https://restful-booker.herokuapp.com/booking/1182", {
+    headers: preparedHeaders,
+    data: preparedBody,
+  });
 });

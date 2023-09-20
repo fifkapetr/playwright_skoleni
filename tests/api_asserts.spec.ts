@@ -13,8 +13,9 @@ test("Booking Content-Type Header check", async ({ request }) => {
   );
   const headers = response.headers();
   const contentType = headers["content-type"];
+
   expect(contentType).toBe("application/json; charset=utf-8");
-  // * Můžeme zkontrolovat i část headeru
+
   expect(contentType).toContain("application/json");
 });
 
@@ -26,13 +27,25 @@ test("Regres.in body.page tests", async ({ request }) => {
   });
 
   const responseBody = await response.json();
+  const responsePageElement = responseBody.page;
 
-  // * responseBody.page existuje
-  expect(responseBody.page).toBeDefined();
+  // * element page existuje v response
+  expect(responsePageElement).toBeDefined();
 
-  // * responseBody.page je typ number
-  expect(typeof responseBody.page).toBe("number");
+  // * page je number (číslo)
+  expect(typeof responsePageElement).toBe("number");
 
-  // * responseBody.page je 2
-  expect(responseBody.page).toBe(2);
+  // * page = 2
+  expect(responsePageElement).toBe(2);
 });
+
+// Metoda
+// GET
+// URL
+// https://reqres.in/api/users?page=2
+// Kontrolovaná hodnota z body:
+// Body obsahuje page
+// page je číslo
+// page je 2
+// Test
+//
